@@ -9,6 +9,9 @@
 
 ## Version history
 
+* 00.01
+    *Implemented generation of 1D chebyshev grids
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
