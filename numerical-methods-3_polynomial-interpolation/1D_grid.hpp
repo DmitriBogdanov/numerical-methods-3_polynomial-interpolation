@@ -6,15 +6,16 @@
 
 
 using uint = unsigned int;
-using Grid = std::vector<double>;
+using Array = std::vector<double>;
+using Function = double(double);
 
 constexpr double PI = 3.14159265358979323846;
 
 // a - left bound
 // b - right bound
 // N - number of points in the grid
-Grid make_grid(double a, double b, uint N) {
-	Grid grid(N);
+inline Array make_grid(double a, double b, uint N) {
+	Array grid(N);
 
 	const auto step = (b - a) / (N - 1);
 
@@ -23,8 +24,8 @@ Grid make_grid(double a, double b, uint N) {
 	return grid;
 }
 
-Grid make_chebyshev_grid(double a, double b, uint N) {
-	Grid grid(N);
+inline Array make_chebyshev_grid(double a, double b, uint N) {
+	Array grid(N);
 
 	
 	const auto middle = (a + b) / 2.;
@@ -34,4 +35,13 @@ Grid make_chebyshev_grid(double a, double b, uint N) {
 	for (uint i = 0; i < N; ++i) grid[i] = middle + halfDifference * std::cos(coef * (2. * i + 1.));
 
 	return grid;
+}
+
+inline Array evaluate_at_grid(Function *f, const Array &grid) {
+	Array res(grid.size());
+
+	for (size_t i = 0; i < grid.size(); ++i)
+		res[i] = f(grid[i]);
+
+	return res;
 }

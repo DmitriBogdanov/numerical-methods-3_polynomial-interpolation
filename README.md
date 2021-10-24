@@ -9,8 +9,13 @@
 
 ## Version history
 
+* 00.02
+    * Implemented lagrange interpolation
+    * Added generalized concept of functions and a set of functons to be interpolated
+    * Added methods for saving resulting grids as files
+
 * 00.01
-    *Implemented generation of 1D chebyshev grids
+    * Implemented generation of 1D chebyshev grids
 
 ## License
 
