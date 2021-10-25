@@ -25,14 +25,15 @@ inline Array make_grid(double a, double b, uint N) {
 }
 
 inline Array make_chebyshev_grid(double a, double b, uint N) {
+	++N;
+
 	Array grid(N);
 
-	
 	const auto middle = (a + b) / 2.;
 	const auto halfDifference = (b - a) / 2.;
 	const auto coef = PI / 2. / (N + 1.);
 
-	for (uint i = 0; i < N; ++i) grid[i] = middle + halfDifference * std::cos(coef * (2. * i + 1.));
+	for (uint i = 0; i < N; ++i) grid[N - 1 - i] = middle + halfDifference * std::cos(coef * (2. * i + 1.));
 
 	return grid;
 }

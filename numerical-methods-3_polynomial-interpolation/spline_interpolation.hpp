@@ -56,8 +56,8 @@ inline Array spline_interpolate_at_grid(Function *f, const Array &x, const Array
 
 	for (size_t k = 0, i = 1; k < grid.size(); ++k) {
 		// Adjust current interval [ x[i-1] ; x[i] ] untill it contains grid[k]
-		while (x[i] < grid[k]) ++i;
-			
+		while (i < x.size() && x[i] < grid[k]) ++i;
+		
 
 		// Interpolate
 		const auto DX = grid[k] - x[i - 1];
