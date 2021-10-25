@@ -169,3 +169,40 @@ T vector_difference_norm(const TMatrix<T> &src1, const TMatrix<T> &src2) {
 
 	return norm;
 }
+
+// Solves tridiagonal system and stores solution into the &dest
+// - saves on copying but modifies A, b during computation
+template<typename T>
+TMatrix<T>& tridiagonal_solve_in_place(TMatrix<T> &A, TMatrix<T> &b) {
+	const auto N = A.rows();
+
+	// Forward elimination
+	for (size_t i = 0; i < N - 1; ++i) {
+		// Eliminate element below [i][i]
+		const T factor = A[i + 1][0] / A[i][1];
+
+		A[i + 1][0] -= A[i][1] * factor;
+		A[i + 1][1] -= A[i][2] * factor;
+		b(i + 1) -= b(i) * factor;
+	}
+
+	// Backward elimination
+	for (size_t i = N - 1; i > 0; --i) {
+		// Eliminate element above [i][i]
+		const T factor = A[i - 1][2] / A[i][1];
+
+		A[i - 1][2] -= A[i][1] * factor;
+		b(i - 1) -= b(i) * factor;
+	}
+
+	// Normalize diagonal
+	for (size_t i = 0; i < N; ++i) {
+		const T factor = 1. / A[i][1];
+
+		A[i][1] *= factor;
+		b(i) *= factor;
+	}
+
+	// Now 'b' holds the solution
+	return b;
+}

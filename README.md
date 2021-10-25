@@ -9,6 +9,10 @@
 
 ## Version history
 
+* 00.03
+    * Implemented spline interpolation
+    * Implemented linear solve for tridiagonal matrices
+
 * 00.02
     * Implemented lagrange interpolation
     * Added generalized concept of functions and a set of functons to be interpolated

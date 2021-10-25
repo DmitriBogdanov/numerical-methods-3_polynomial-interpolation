@@ -15,11 +15,11 @@ constexpr double PI = 3.14159265358979323846;
 // b - right bound
 // N - number of points in the grid
 inline Array make_grid(double a, double b, uint N) {
-	Array grid(N);
+	Array grid(N + 1);
 
-	const auto step = (b - a) / (N - 1);
+	const auto step = (b - a) / N;
 
-	for (uint i = 0; i < N; ++i) grid[i] = a + i * step;
+	for (uint i = 0; i < N + 1; ++i) grid[i] = a + i * step;
 
 	return grid;
 }

@@ -11,6 +11,7 @@
 
 #include "static_timer.hpp"
 #include "lagrange_interpolation.hpp"
+#include "spline_interpolation.hpp"
 
 
 
@@ -89,7 +90,7 @@ int main(int* argc, char** argv) {
 		std::cout << ">>> Computing...\n";
 
 		// Interpolate
-		const auto intpValues = lagrange_interpolate_at_grid(f, x, y, intpGrid);
+		const auto intpValues = spline_interpolate_at_grid(f, x, y, intpGrid);
 
 		// Evaluate true values at the same grid
 		const auto trueValues = evaluate_at_grid(f, intpGrid);
